@@ -10,11 +10,11 @@ module Api
           httponly: true
         }
 
-        render 'api/sessions/create'
+        render 'api/sessions/create', status: :created
       else
         render json: {
           success: false
-        }
+        }, status: :bad_request
       end
     end
 
@@ -24,10 +24,10 @@ module Api
 
       if session
         @user = session.user
-        render 'api/sessions/authenticated'
+        render 'api/sessions/authenticated', status: :ok
       else
         render json: {
-          authenticated: false
+          authenticated: false, status: :bad_request
         }
       end
     end
@@ -38,7 +38,7 @@ module Api
 
       if session&.destroy
         render json: {
-          success: true
+          success: true, status: :ok
         }
       end
     end
