@@ -21,6 +21,8 @@ class Property extends React.Component {
                     loading: false,
                 })
             })
+
+        console.log(process.env.STRIPE_PUBLISHABLE_KEY)
     }
 
     render() {
