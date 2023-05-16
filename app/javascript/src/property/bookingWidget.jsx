@@ -68,10 +68,11 @@ class BookingWidget extends React.Component {
     initiateStripeCheckout = (booking_id) => {
         console.log(booking_id)
         console.log(window.location.pathname)
-        return fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
+        const response = fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
             method: 'POST',
         }))
-            .then(handleErrors)
+        console.log(response)
+        response.then(handleErrors)
             .then(response => {
                 const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
