@@ -57,9 +57,11 @@ module Api
         )
       rescue JSON::ParserError => e
         # Invalid payload
+        puts "invalid payload"
         return head :bad_request
       rescue Stripe::SignatureVerificationError => e
         # Invalid signature
+        puts "invalid signature"
         return head :bad_request
       end
 
